@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.env.*
+.venv/
+venv/
+
+# Poetry
+poetry.lock
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Test
+htmlcov/
+.coverage
+.cache/
+
+# Misc
+*.sqlite3
+*.db
+*.swp
+*.swo
+.DS_Store

@@ -1,0 +1,12 @@
+[flake8]
+application-import-names = dsp_toolkit,plugins
+max-line-length = 120
+exclude = .git,__pycache__,docs,venv,.venv,build,dist
+# You can add custom plugin codes here, e.g. NCP, NLB
+
+per-file-ignores =
+	tests/*.py: S101
+	test_*.py: S101
+    src/fastapi_tutorial/cli.py: S404, S603
+
+ignore = I900

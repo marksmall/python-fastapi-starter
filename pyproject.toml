@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "python-fastapistarter"
+version = "0.1.0"
+description = "A FastAPI starter project with Poetry, Ruff, Pytest, Docker, and VSCode integration."
+authors = ["Your Name <your@email.com>"]
+readme = "README.md"
+
+packages = [{ include = "python_fastapi_starter", from = "src" }]
+
+[tool.poetry.scripts]
+start = "python_fastapi_starter.cli:main"
+test = "python_fastapi_starter.cli:test"
+lint = "python_fastapi_starter.cli:lint_and_format"
+release = "python_fastapi_starter.cli:release"
+postinstall = "python_fastapi_starter.cli:postinstall"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+fastapi = { extras = ["standard"], version = "^0.116.1" }
+uvicorn = { extras = ["standard"], version = "^0.35.0" }
+python-dotenv = "^1.1.1"
+pydantic = "^2.11.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+ruff = "^0.12.7"
+python-semantic-release = "^10.3.1"
+lefthook = "^1.12.3"
+httpx = "^0.28.0"
+bandit = "^1.8.6"
+flake8 = "^7.3.0"
+flake8-comprehensions = "^3.16.0"
+setuptools = "^80.9.0"
+dsp3-toolkit = "^1.0.1"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "dsp_toolkit.*"
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_source = "tag"
+upload_to_pypi = false
+branch = "main"
+commit_author = "semantic-release <semantic-release@github.com>"
+changelog_file = "CHANGELOG.md"
+changelog = true
+build_command = ""
+commit_message = "chore(release): update CHANGELOG.md [skip ci]\n\n{changelog}"
+push = true
+github_release = true
+major_on_breaking_change = true
+minor_on_feat = true
+patch_on_fix = true
+commit_parser = "angular"

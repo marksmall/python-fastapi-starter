@@ -1,0 +1,8 @@
+pre-push:
+  scripts:
+    "bash scripts/pre_push.sh": {}
+
+pre-commit:
+  scripts:
+    "poetry run lint": {}
+    "poetry run flake8": {}

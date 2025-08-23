@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run FastAPI (cli.py with Docker DB)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/python_fastapi_starter/cli.py",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "preLaunchTask": "Start Docker",
+      "justMyCode": true
+    }
+  ]
+}

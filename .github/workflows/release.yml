@@ -1,0 +1,38 @@
+name: RELEASE
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [make_release]
+    branches:
+      - main
+
+env:
+  GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+  HUSKY: 0
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run lint
+        run: poetry run lint
+
+      - name: Run tests
+        run: poetry run test
+
+      - name: Build Release
+        env:
+          CI: true
+          
+        run: |
+          poetry run release

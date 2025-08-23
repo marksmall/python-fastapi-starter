@@ -1,0 +1,8 @@
+line-length = 100
+exclude = [".venv", "venv"]
+
+[lint]
+select = ["E", "F", "I"] # E=pycodestyle, F=pyflakes, I=isort
+
+[lint.isort]
+known-first-party = ["python_fastapi_starter"]

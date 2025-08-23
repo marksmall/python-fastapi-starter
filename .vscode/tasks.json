@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Docker",
+      "type": "shell",
+      "command": "docker compose down db && docker compose up --build -d db",
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run API",
+      "type": "shell",
+      "command": "poetry run start --reload",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint & Format",
+      "type": "shell",
+      "command": "poetry run lint",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "poetry run test",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
