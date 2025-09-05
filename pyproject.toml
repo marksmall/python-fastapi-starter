@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-fastapistarter"
-version = "0.1.0"
+version = "1.0.0"
 description = "A FastAPI starter project with Poetry, Ruff, Pytest, Docker, and VSCode integration."
 authors = ["Your Name <your@email.com>"]
 readme = "README.md"
