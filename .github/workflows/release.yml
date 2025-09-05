@@ -2,37 +2,41 @@ name: RELEASE
 
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [make_release]
-    branches:
-      - main
 
 env:
   GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-  HUSKY: 0
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: pip install poetry
+
       - name: Install dependencies
         run: poetry install
 
-      - name: Run lint
-        run: poetry run lint
 
-      - name: Run tests
-        run: poetry run test
-
-      - name: Build Release
+      - name: Bump version and generate changelog
         env:
           CI: true
-          
-        run: |
-          poetry run release
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: poetry run release version
+
+      - name: Build package
+        run: poetry build
+
+      - name: Publish release
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: poetry run release publish
